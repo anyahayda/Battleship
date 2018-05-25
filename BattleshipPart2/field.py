@@ -13,6 +13,9 @@ class Field:
         self.misses = set()
 
     def __str__(self):
+        """
+        Returns built field with killed ships and missed shots.
+        """
         field_list = [[' ' for x in range(10)] for y in range(10)]
         for ship in self.ships:
             if ship.horizontal:
@@ -30,12 +33,18 @@ class Field:
         return result
 
     def has_ship(self, pos):
+        """
+        Return True if ship in the specified position and False if not.
+        """
         for ship in self.ships:
             if ship.check_at(pos):
                 return True;
         return False
 
     def shoot_at(self, pos):
+        """
+        Return True if hit the ship and False if not.
+        """
         for ship in self.ships:
             if ship.shoot_at(pos):
                 return True
@@ -43,12 +52,18 @@ class Field:
         return False
 
     def has_alive_ships(self):
+        """
+        Returns True if ship is alive.
+        """
         for ship in self.ships:
             if ship.is_alive():
                 return True
         return False
 
     def generate_random_field(self):
+        """
+        Function for generating random field.
+        """
         for length in ship_lengths:
             added = False
             x = 0
@@ -79,13 +94,22 @@ class Field:
                     added = True
 
     def field_with_ships(self):
+        """
+        Returns field with ships.
+        """
         return self.__str__()
 
     def field_without_ships(self):
+        """
+        Returns field without ships.
+        """
         return self.__str__().replace('*', ' ')
 
 
 def test():
+    """
+    Function fot testing battleship
+    """
     f = Field()
     f.generate_random_field()
     print(f)
