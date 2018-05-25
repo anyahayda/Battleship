@@ -4,6 +4,9 @@ ship_lengths = [4, 3, 3, 2, 2, 2, 1, 1, 1, 1]
 
 
 class Field:
+    """
+    Class for building a field from txt file.
+    """
     def __init__(self):
         self.field_size = [10, 10]
         self.data = [[' ' for x in range(self.field_size[0])] for y in range(self.field_size[1])]
@@ -15,13 +18,22 @@ class Field:
         return result
 
     def read_field(self, file_name):
+        """
+        Function for reading field from txt file.
+        """
         with open(file_name, 'r') as file:
             self.data = file.read().splitlines()
 
     def has_ship(self, pos):
+        """
+        Returns position of the ships.
+        """
         return self.data[pos[1]][pos[0]] == '*'
 
     def ship_size(self, pos):
+        """
+        Returns ship size, which in the txt file.
+        """
         size = 0
         if self.data[pos[1]][pos[0]] == '*':
             size += 1
@@ -49,6 +61,9 @@ class Field:
         return size
 
     def generate_field(self):
+        """
+        Function for generating a field with ships.
+        """
         self.data = [[' ' for x in range(self.field_size[0])] for y in range(self.field_size[1])]
         for length in ship_lengths:
             added = False
